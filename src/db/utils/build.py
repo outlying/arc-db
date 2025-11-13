@@ -1,5 +1,6 @@
 import csv
 import sqlite3
+import sys
 
 from src.db import SQLITE_DATABASE, SQLITE_SCHEMA, IMPORT_DATA_DIRECTORY
 
@@ -40,6 +41,14 @@ if __name__ == "__main__":
     for csv_path in IMPORT_DATA_DIRECTORY.glob("*.csv"):
         table_name = csv_path.stem
         print(f"Loading {csv_path} into {table_name}")
+
+        match table_name:
+            case "items":
+                print("Do items import")
+            case _:
+                print("Unsupported file, failure")
+                sys.exit(1)
+
         load_csv_to_table(conn, csv_path, table_name)
 
     conn.close()
