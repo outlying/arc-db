@@ -8,6 +8,4 @@ CREATE TABLE items (
   weight REAL NOT NULL,
   category TEXT NOT NULL,                      -- as per in game category
   stack_size INTEGER DEFAULT 1,
-  created_at TEXT DEFAULT (datetime('now')),
-  updated_at TEXT DEFAULT (datetime('now'))
 );
