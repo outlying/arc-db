@@ -7,5 +7,5 @@ CREATE TABLE items (
   value INTEGER NOT NULL,
   weight REAL NOT NULL,
   category TEXT NOT NULL,                      -- as per in game category
-  stack_size INTEGER DEFAULT 1,
+  stack_size INTEGER DEFAULT 1
 );

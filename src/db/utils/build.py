@@ -19,12 +19,17 @@ def recreate_db():
 
     return conn
 
-def load_csv_to_table(conn, csv_path, table_name):
+def read_csv_rows(csv_path):
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
     if not rows:
         return
+
+    return rows
+
+def load_csv_to_table(conn, csv_path, table_name):
+    rows = read_csv_rows(csv_path=csv_path)
 
     columns = rows[0].keys()
     col_list = ", ".join(columns)
