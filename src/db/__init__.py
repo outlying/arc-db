@@ -1,3 +1,5 @@
 import os
+from pathlib import Path
 
-SQLITE_DATABASE = os.path.abspath("./db/arc.db")
+SQLITE_SCHEMA = Path(os.path.abspath("./db/arc.sql"))
+SQLITE_DATABASE = Path(os.path.abspath("./db/arc.db"))
