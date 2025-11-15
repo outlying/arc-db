@@ -1,26 +1,11 @@
 import csv
 import logging
 
-from peewee import *
-
-from src.db import SQLITE_DATABASE, IMPORT_DATA_DIRECTORY
-from src.db.consts import TABLE_ITEMS
+from src.db import SQLITE_DATABASE, IMPORT_DATA_DIRECTORY, db
+from src.db.model import Item
 from src.db.utils.mappers import MAPPERS
 
-db = SqliteDatabase(SQLITE_DATABASE)
-
 logger = logging.getLogger(__name__)
-
-class BaseModel(Model):
-    class Meta:
-        database = db
-
-class Item(BaseModel):
-    slug = CharField()
-    name = CharField()
-
-    class Meta:
-        table_name = TABLE_ITEMS
 
 if __name__ == "__main__":
 
