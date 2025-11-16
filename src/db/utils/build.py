@@ -1,4 +1,8 @@
 import csv
+
+import yaml
+from ruamel.yaml import YAML
+from ruamel.yaml.constructor import DuplicateKeyError
 import logging
 
 from src.db import SQLITE_DATABASE, IMPORT_DATA_DIRECTORY, db
@@ -18,6 +22,24 @@ if __name__ == "__main__":
     db.connect()
     db.create_tables([Item])
 
+    yaml = YAML(typ="safe")
+    yaml.allow_duplicate_keys = False
+
+    # YAML import
+    data: dict = dict()
+
+    try:
+        with open(IMPORT_DATA_DIRECTORY / "items.yml" ,"r", encoding="utf-8") as f:
+            data = yaml.load(f)
+    except DuplicateKeyError as e:
+        logger.error(f"Duplicate key error {e}" )
+        exit(1)
+
+    
+
+    # CSV import
+    exit(0)
+
     for csv_path in IMPORT_DATA_DIRECTORY.glob("*.csv"):
         table_name = csv_path.stem
         logger.info(f"Importing data to '{table_name}' table")
@@ -35,4 +57,4 @@ if __name__ == "__main__":
         if result != len(rows):
             logger.warning("Not all items were inserted")
         else:
-            logger.info(f"All items successfully imported to {table_name}")
+            logger.info(f"All rows successfully imported to '{table_name}' table")

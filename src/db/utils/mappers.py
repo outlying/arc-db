@@ -8,14 +8,8 @@ def slugify(text: str) -> str:
     return text
 
 def map_item(item):
-
-    slug = slugify(item["name"])
-
-    return {
-        "id": item["id"],
-        "name": item["name"],
-        "slug": slug,
-    }
+    item["slug"] = slugify(item["name"])
+    return item
 
 MAPPERS = {
     TABLE_ITEMS: map_item

@@ -1,0 +1,13 @@
+advanced-arc-powercell:
+  name: Advanced ARC Powercell
+  value: 40
+  weight: 0.2
+  stack_size: 1
+  rarity: rare
+
+assorted-seeds:
+  name: Assorted Seeds
+  value: 100
+  weight: 0.05
+  stack_size: 100
+  rarity: common
